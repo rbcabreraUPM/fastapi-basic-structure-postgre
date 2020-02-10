@@ -20,3 +20,23 @@ async def createUser(user: UserSchema):
 async def getAllUsers():
     query = users.select()
     return await database.fetch_all(query=query)	
+
+
+async def getUser(id: int):
+    query = users.select().where(id == users.c.id)
+    return await database.fetch_one(query=query)
+
+# async def update(id: int, payload: NoteSchema):
+#     query = (
+#         notes
+#         .update()
+#         .where(id == notes.c.id)
+#         .values(title=payload.title, description=payload.description)
+#         .returning(notes.c.id)
+#     )
+#     return await database.execute(query=query)
+
+
+# async def delete(id: int):
+#     query = notes.delete().where(id == notes.c.id)
+#     return await database.execute(query=query)

@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Path,HTTPException
 from typing import List
 from starlette.responses import JSONResponse
 from starlette.status import *
@@ -22,6 +22,36 @@ async def createUser(user: UserSchema):
     }
 	return JSONResponse(status_code=HTTP_201_CREATED, content=user_response)
 
+
+# GET 
+# RETURNS ALL DATA AS A LIST OF DICTIONARIES(JSON)
 @router.get("/getAllUsers", response_model=List[UserResponseSchema])
 async def getAllUsers():
     return await userService.getAllUsers()
+
+# GET ALL USERS
+# RETURNS ALL DETAILS
+@router.get("/{id}/", response_model=UserResponseSchema)
+async def getUser(id: int = Path(..., gt=0),):
+    user = await userService.getUser(id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+@router.put("/{id}/", response_model=UserResponseSchema)
+async def updateUser(id: int = Path(..., gt=0),):
+    user = await userService.getUser(id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+
+# @router.delete("/{id}/", response_model=NoteDB)
+# async def delete_note(id: int = Path(..., gt=0)):
+#     note = await crud.get(id)
+#     if not note:
+#         raise HTTPException(status_code=404, detail="Note not found")
+
+#     await crud.delete(id)
+
+#     return note
