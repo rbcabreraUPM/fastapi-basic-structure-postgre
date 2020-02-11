@@ -38,20 +38,21 @@ async def getUser(id: int = Path(..., gt=0),):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-@router.put("/{id}/", response_model=UserResponseSchema)
-async def updateUser(id: int = Path(..., gt=0),):
-    user = await userService.getUser(id)
-    if not user:
+@router.put("/updateUser/{id}/",response_model=UserResponseSchema)
+async def updateUser(user: UserSchema, id: int = Path(..., gt=0),):
+    userExist = await userService.getUser(id)
+    if not userExist:
         raise HTTPException(status_code=404, detail="User not found")
-    return user
+
+    updatedUser = await userService.updateUser(id, user)
+    return updatedUser
 
 
-# @router.delete("/{id}/", response_model=NoteDB)
-# async def delete_note(id: int = Path(..., gt=0)):
-#     note = await crud.get(id)
-#     if not note:
-#         raise HTTPException(status_code=404, detail="Note not found")
+@router.delete("/deleteUser/{id}/", response_model=UserResponseSchema)
+async def deleteUser(id: int = Path(..., gt=0)):
+    userExist = await userService.getUser(id)
+    if not userExist:
+        raise HTTPException(status_code=404, detail="User not found")
 
-#     await crud.delete(id)
-
-#     return note
+    await userService.deleteUser(id)
+    return userExist

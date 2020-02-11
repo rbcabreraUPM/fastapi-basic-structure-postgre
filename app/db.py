@@ -1,16 +1,17 @@
 import os
-
-from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table,
-                        create_engine)
+from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table,create_engine)
 from sqlalchemy.sql import func
-
 from databases import Database
 
-DATABASE_URL = 'postgresql://postgres@localhost:5432/sqlalchemy'
+
+DATABASE_URL=os.getenv("DATABASE_URL")
 
 # SQLAlchemy
 engine = create_engine(DATABASE_URL)
 metadata = MetaData()
+
+
+# create notes table
 notes = Table(
     "notes",
     metadata,
@@ -20,7 +21,7 @@ notes = Table(
     Column("created_date", DateTime, default=func.now(), nullable=False),
 )
 
-
+# create users table
 users = Table(
 	'users',
 	metadata,

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e2a587411f2b60ef74e2594fdd25788b7422f9ea90e564eb84bce29953e12678"
+            "sha256": "c71ec7ac2dd3c1eaf53ed82b702735637d5dfb2c1242156d38cf1b9e7d60c02c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -112,6 +112,14 @@
             "index": "pypi",
             "version": "==1.0.5"
         },
+        "environs": {
+            "hashes": [
+                "sha256:2291ce502c9e61b8e208c8c9be4ac474e0f523c4dc23e0beb23118086e43b324",
+                "sha256:44700c562fb6f783640f90c2225d9a80d85d24833b4dd02d20b8ff1c83901e47"
+            ],
+            "index": "pypi",
+            "version": "==7.2.0"
+        },
         "fastapi": {
             "hashes": [
                 "sha256:6c9b919f2ed742d2ad78e6dce5ad1be761e67292b838ba114cb525ec784d10a1",
@@ -143,6 +151,13 @@
             ],
             "index": "pypi",
             "version": "==1.5.0"
+        },
+        "marshmallow": {
+            "hashes": [
+                "sha256:7669b944d6233b81f68739d5826f1176c3841cc31cf6b856841083b5a72f5ca9",
+                "sha256:c9d277f6092f32300395fb83d343be9f61b5e99d66d22bae1e5e7cd82608fee6"
+            ],
+            "version": "==3.4.0"
         },
         "more-itertools": {
             "hashes": [
@@ -248,6 +263,14 @@
             ],
             "index": "pypi",
             "version": "==5.3.2"
+        },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:8429f459fc041237d98c9ff32e1938e7e5535b5ff24388876315a098027c3a57",
+                "sha256:ca9f3debf2262170d6f46571ce4d6ca1add60bb93b69c3a29dcb3d1a00a65c93"
+            ],
+            "index": "pypi",
+            "version": "==0.11.0"
         },
         "requests": {
             "hashes": [

@@ -35,6 +35,8 @@ wcwidth = "==0.1.8"
 websockets = "==8.1"
 zipp = "==2.2.0"
 email-validator = "*"
+environs = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
