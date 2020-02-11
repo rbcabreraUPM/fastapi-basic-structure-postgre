@@ -1,3 +1,6 @@
 Pipfile
 Pipfile.lock
 app/.env
+.Pipfile
+.Pipfile.lock
+.gitignore
