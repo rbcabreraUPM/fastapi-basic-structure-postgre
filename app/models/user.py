@@ -15,4 +15,4 @@ class UserResponseSchema(BaseModel):
     user_name:  str 
     first_name: str  
     last_name:  str 
-    id:         int 
+    id:         str 

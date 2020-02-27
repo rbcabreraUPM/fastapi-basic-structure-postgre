@@ -1,18 +1,24 @@
 from ..models.user import UserSchema, UserDB
 from ..db import database, users
-
+from starlette.status import *
 
 #
 # CREATES A NEW USER
 # 
 
 async def createUser(user: UserSchema):
-    query = users.insert().values(
-    		user_name = user.userName, 
-    		first_name = user.firstName,
-    		last_name = user.lastName)
-    return await database.execute(query=query)
-
+    try:
+        query = users.insert().values(
+            user_name = user.userName, 
+            first_name = user.firstName,
+            last_name = user.lastName
+        )
+        return await database.execute(query=query)
+    except Exception as e:
+        return {
+                 'status_code': HTTP_400_BAD_REQUEST,
+                 'description': e.detail
+                }
 #
 # GET ALL USERS
 # 

@@ -13,14 +13,17 @@ router = APIRouter()
 # Creates a new User
 @router.post("/createUser")
 async def createUser(user: UserSchema):
-	user_primary_key = await userService.createUser(user)
-	user_response = {
+    user_primary_key = await userService.createUser(user)
+    if isinstance(user_primary_key, dict):
+        print(user_primary_key)
+        raise HTTPException(status_code=user_primary_key['status_code'], detail= user_primary_key['description'])
+    user_response = {
         "id": user_primary_key,
         "userName": user.userName,
        	"firstName": user.firstName,
        	"lastName": user.lastName
     }
-	return JSONResponse(status_code=HTTP_201_CREATED, content=user_response)
+    return JSONResponse(status_code=HTTP_201_CREATED, content=user_response)
 
 
 # GET 
